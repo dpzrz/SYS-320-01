@@ -1,0 +1,1 @@
+﻿Get-EventLog System -source Microsoft-Windows-WinLogon 
