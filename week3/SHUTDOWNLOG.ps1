@@ -7,7 +7,11 @@
     $startDate = (Get-Date).AddDays(-$Days)
     $eventList = @()
 
+<<<<<<< HEAD
     # Get startup events (Event ID 6005)
+=======
+
+>>>>>>> 6f432b40b1bead579cdeb8660c48219eb42fa2ff
     Get-EventLog -LogName System -After $startDate | Where-Object {$_.EventID -eq 6005} | ForEach-Object {
         $event = [PSCustomObject]@{
             Time  = $_.TimeGenerated
@@ -18,7 +22,11 @@
         $eventList += $event
     }
 
+<<<<<<< HEAD
     # Get shutdown events (Event ID 6006)
+=======
+
+>>>>>>> 6f432b40b1bead579cdeb8660c48219eb42fa2ff
     Get-EventLog -LogName System -After $startDate | Where-Object {$_.EventID -eq 6006} | ForEach-Object {
         $event = [PSCustomObject]@{
             Time  = $_.TimeGenerated
@@ -32,6 +40,7 @@
     return $eventList
 }
 
+<<<<<<< HEAD
 # Prompt the user for the number of days
 $userInput = Read-Host "Enter the number of days to retrieve startup/shutdown events"
 
@@ -39,6 +48,15 @@ $userInput = Read-Host "Enter the number of days to retrieve startup/shutdown ev
 if ([int]::TryParse($userInput, [ref]$null)) {
     $days = [int]$userInput
     # Call the function with the user-provided number of days and print the results
+=======
+
+$userInput = Read-Host "Enter the number of days to retrieve startup/shutdown events"
+
+
+if ([int]::TryParse($userInput, [ref]$null)) {
+    $days = [int]$userInput
+
+>>>>>>> 6f432b40b1bead579cdeb8660c48219eb42fa2ff
     $results = Get-StartupShutdownEvents -Days $days
     $results | Format-Table -AutoSize
 }

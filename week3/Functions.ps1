@@ -26,7 +26,7 @@ function Get-LogonLogoffEvents {
     $eventList = @()
 
     Get-EventLog -LogName Security -After $startDate | Where-Object {$_.EventID -in @(4624, 4634)} | ForEach-Object {
-        $sid = $_.ReplacementStrings[4]  # SID is typically in index 4 for these events
+        $sid = $_.ReplacementStrings[4]  
         $username = Convert-SidToUsername -Sid $sid
 
         $event = [PSCustomObject]@{
