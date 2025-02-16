@@ -17,6 +17,8 @@ foreach ($IP in $Result) {
 
 
 
+
+# Calling Apache logs function
 $Result2 = ParseApacheLogs
 
 
