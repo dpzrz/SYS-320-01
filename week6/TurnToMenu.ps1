@@ -40,7 +40,6 @@ while($operation){
     }
 
 
-    # Create a user
     elseif($choice -eq 3){ 
 
       $days = Read-Host -Prompt "Please enter the number of days to check"
@@ -52,7 +51,7 @@ while($operation){
      }
         
 
-    # Remove a user
+
     elseif($choice -eq 4){
         $chromeProcess = Get-Process -Name chrome -ErrorAction SilentlyContinue
 
