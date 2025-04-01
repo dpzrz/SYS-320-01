@@ -62,7 +62,7 @@ function getFailedLogins($timeBack){
 
     }
 
-    return $failedloginsTable | Select-Object -Last 10
+    return $user | Sort-Object | Get-Unique
 } # End of function getFailedLogins
 
 function listAtRiskUsers() {

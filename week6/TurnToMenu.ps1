@@ -7,7 +7,7 @@ clear
 $Prompt = "`n"
 $Prompt += "Please choose your operation:`n"
 $Prompt += "1 - Display last 10 apache logs`n"
-$Prompt += "2 - Fisplay last 10 failed logins for all users`n"
+$Prompt += "2 - Display last 10 failed logins for all users`n"
 $Prompt += "3 - Display at risk users`n"
 $Prompt += "4 - Start Chrome web browser`n"
 $Prompt += "5 - Exit`n"
@@ -43,10 +43,8 @@ while($operation){
     # Create a user
     elseif($choice -eq 3){ 
 
-      $days = Read-Host -Prompt "Please enter the number of days to check"
-      $failedLogins = getFailedLogins $days
-      $atRiskUsers = $failedLogins | Group-Object User | Where-Object { $_.Count -gt 10 } | Select-Object Name, Count
-      Write-Host "Users with more than 10 failed logins in the last $days days:" | Out-String
+      $failedLogins = getFailedLogins 10
+      $atRiskUsers = $failedLogins
       Write-Host ($atRiskUsers | Format-Table | Out-String)
     
      }
