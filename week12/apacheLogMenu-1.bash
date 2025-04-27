@@ -49,9 +49,19 @@ function histogram(){
 
 function frequentVisitors(){
 
-	local visnum="$(histogram)"
-		echo "$visnum" | awk '$1 > 10 {printf "%-15s %s\n" , $2, $1}' | column -t
-
+	histoCall=$(histogram)
+        #echo "$histoCall"
+        :> newtemp1.txt
+	echo "$histoCall" | while read -r line;
+	do
+		local IPCount=$(echo "$line" | cut -d " " -f 1)
+		local IP=$(echo "$line" | cut -d " " -f 2)
+		if [[ "${IPCount}" -ge "10" ]]
+		then
+			echo "$IPCount $IP" >> newtemp1.txt
+		fi
+	done
+	cat "newtemp1.txt"
 }
 
 
@@ -68,14 +78,11 @@ function frequentVisitors(){
 # it is welcomed.
 
 function suspiciousVisitors(){
-	local ioc ="ioc.txt"
-	grep -f "$ioc" "$logFIle" | cut -d ' ' -f 1 |  sort | uniq -c 
+	
+	cat "$logFile" | egrep -i -f ioc.txt | cut -d " " -f 1 | sort -n | uniq -c
+
+ 
 }
-
-
-
-
-
 
 
 while :
