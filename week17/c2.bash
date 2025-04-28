@@ -2,7 +2,7 @@
 
 
 if [ ! ${#} -eq 2 ]; then
-	echo " NEED path to the log file + path to the ioc file\n"
+	echo " NEED path to the log file + path to the ioc file"
 else
 	log=$1
 	IOC=$2
